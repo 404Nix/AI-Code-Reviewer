@@ -1,14 +1,14 @@
 import generateContent from '../services/ai.service.js'
 
 
-export const getResponse = async (req, res) => {
-    const prompt = req.query.prompt
+export const getReview = async (req, res) => {
+    const { code } = req.body
 
-    if(!prompt) {
-        return res.status(400).send('prompt is required')
+    if(!code) {
+        return res.status(400).send('code is required')
     }
 
-    const response = await generateContent(prompt)
+    const response = await generateContent(code)
 
     res.send(response)
 }
